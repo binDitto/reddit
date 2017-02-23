@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     uniqueness: true,
                     length: { maximum: 105 },
-                    format: { with: val_email_reg }
+                    format: { with: val_email_reg, message: 'PW must includ a number and uppercase' }
 
    val_pass_reg = /\A(?=.*[a-zA-Z])(?=.*[0-9]).{6,}\z/
                    #  | Looks for an arbitrary string followed by a letter

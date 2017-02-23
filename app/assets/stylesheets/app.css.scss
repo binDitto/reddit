@@ -1,14 +1,28 @@
 .wrapper {
-  background: darkgray;
+  background: rgba(177,179,179,1);
+background: -moz-linear-gradient(-45deg, rgba(177,179,179,1) 0%, rgba(100,109,112,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(177,179,179,1)), color-stop(100%, rgba(100,109,112,1)));
+background: -webkit-linear-gradient(-45deg, rgba(177,179,179,1) 0%, rgba(100,109,112,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(177,179,179,1) 0%, rgba(100,109,112,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(177,179,179,1) 0%, rgba(100,109,112,1) 100%);
+background: linear-gradient(135deg, rgba(177,179,179,1) 0%, rgba(100,109,112,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b1b3b3', endColorstr='#646d70', GradientType=1 );
   height: 100vh;
 
   .navbar {
     border-radius: 0px;
+    margin-bottom: 0px;
   }
 
   .jumbotron {
-    background: lightblue;
-
+    background: rgba(71,218,255,1);
+background: -moz-linear-gradient(-45deg, rgba(71,218,255,1) 0%, rgba(62,164,201,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(71,218,255,1)), color-stop(100%, rgba(62,164,201,1)));
+background: -webkit-linear-gradient(-45deg, rgba(71,218,255,1) 0%, rgba(62,164,201,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(71,218,255,1) 0%, rgba(62,164,201,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(71,218,255,1) 0%, rgba(62,164,201,1) 100%);
+background: linear-gradient(135deg, rgba(71,218,255,1) 0%, rgba(62,164,201,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47daff', endColorstr='#3ea4c9', GradientType=1 );
     .container {
       margin-top: 0px;
       margin-bottom: 0px;
