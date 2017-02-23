@@ -1,0 +1,33 @@
+<div class="jumbotron">
+  <div class="container">
+
+    <h1>Users</h1>
+    <p>All users from Reddit database.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <% @users.each do |user| %>
+        <div class="list-group col-xs-12 col-sm-6">
+          <%= link_to(user, class: "list-group-item") do %>
+            <div class="media-body">
+              <h3><%= user.username %></h3>
+              <small><%= user.email %></small>
+            </div>
+
+            <div class="media-right">
+
+            </div>
+            <div class="media-right">
+
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'New User', new_user_path %>

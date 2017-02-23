@@ -1,0 +1,17 @@
+.wrapper {
+  background: darkgray;
+  height: 100vh;
+
+  .navbar {
+    border-radius: 0px;
+  }
+
+  .jumbotron {
+    background: lightblue;
+
+    .container {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+}
