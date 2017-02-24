@@ -27,6 +27,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit new_user_path ? "Sign up" : "Update" %>
+    <%= f.submit action_name == "new" ? "Sign up" : "Update" %>
   </div>
 <% end %>
