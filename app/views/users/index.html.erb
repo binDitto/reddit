@@ -17,10 +17,25 @@
             </div>
 
             <div class="media-right">
-
+              <div class="well well-sm" align="center">
+                <h3><%= user.posts.count %></h3>
+                <hr>
+                <h6>Posts</h6>
+              </div>
             </div>
             <div class="media-right">
-
+              <div class="well well-sm" align="center">
+                <h3><%= user.comments.count %></h3>
+                <hr>
+                <h6>Comments</h6>
+              </div>
+            </div>
+            <div class="media-right">
+              <div class="well well-sm" align="center">
+                <h3><%= user.votes.count %></h3>
+                <hr>
+                <h6>Votes</h6>
+              </div>
             </div>
           <% end %>
         </div>

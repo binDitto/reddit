@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
 
-
-  get 'sessions/login'
-
-  get 'sessions/create'
-
-  get 'sessions/logout'
+  resources :categories
 
   resources :posts do
-    resources :votes, only: [ :create ], module: :votes
+    resources :votes, only: [ :create ], module: :posts
+    resources :comments, only: [ :create, :destroy ], module: :posts
   end
 
   resources :users do
     resources :posts, only: [ :index ], module: :users
+    resources :comments, only: [ :index, :destroy ]
+  end
+
+  resources :comments do
+    resources :votes, only: [ :create ], module: :comments
+    resources :comments, only: [ :create, :destroy ], module: :comments
   end
 
   root 'welcome#index'

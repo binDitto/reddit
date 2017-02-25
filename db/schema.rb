@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225115328) do
+ActiveRecord::Schema.define(version: 20170225125259) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -29,12 +29,8 @@ ActiveRecord::Schema.define(version: 20170225115328) do
   end
 
   create_table "post_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_post_categories_on_post_id", using: :btree
-    t.index ["user_id"], name: "index_post_categories_on_user_id", using: :btree
+    t.integer "post_id"
+    t.integer "category_id"
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -46,6 +42,14 @@ ActiveRecord::Schema.define(version: 20170225115328) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+  end
+
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "type"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_roles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,8 +71,7 @@ ActiveRecord::Schema.define(version: 20170225115328) do
   end
 
   add_foreign_key "comments", "users"
-  add_foreign_key "post_categories", "posts"
-  add_foreign_key "post_categories", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "roles", "users"
   add_foreign_key "votes", "users"
 end
