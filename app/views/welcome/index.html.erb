@@ -12,9 +12,9 @@
     <% if Post.any? %>
       <%= render partial: "posts/posts", collection: @posts %>
     <% else %>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h3>No posts to show. Sign in and make a post.</h3>
+      <div class="jumbotron">
+        <div class="container">
+          <p>No posts to show. Sign in and make a post.</p>
         </div>
       </div>
     <% end %>

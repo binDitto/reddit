@@ -16,7 +16,11 @@
       <%= render partial: "posts/posts", collection: @user_posts %>
       <%= render partial: "posts/posts", collection: @posts %>
     <% else %>
-      <h1 style="{color: white}">No Posts Yet.</h1>
+    <div class="jumbotron">
+      <div class="container">
+        <p>No posts to show. Sign in and make a post.</p>
+      </div>
+    </div>
     <% end %>
 
   </div>

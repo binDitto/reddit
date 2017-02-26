@@ -7,54 +7,59 @@
 
         <div class="panel panel-default">
 
-
-              <h1 align="center">Be the first User to Sign up!</h1>
-
-
+          <div class="panel-heading">
+            <h1 align="center">Be the first User to Sign up!</h1>
           </div>
 
-          <%= form_for(User.new) do |f| %>
-            <% if User.new.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(User.new.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-                <ul>
-                <% User.new.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-                </ul>
+          <div class="panel-body">
+            <%= form_for(User.new) do |f| %>
+              <% if User.new.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(User.new.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+                  <ul>
+                  <% User.new.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="form-group">
+                <%= f.label :username %>
+                <%= f.text_field :username, class: "form-control", placeholder: "Enter username" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.text_field :email, class: "form-control", placeholder: "Enter email" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password %>
+                <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
+                <span id="helpBlock2" class="help-block">
+                  <small>
+                  + Password must contain 1 numerical <br/>
+                  + Password must contain 1 uppercase letter <br/>
+                  + Password length must be greater than 8</span>
+                </small>
+              </div>
+              <div class="form-group">
+                <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm password" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.submit "Sign up", class: "btn btn-success" %>
               </div>
             <% end %>
 
-            <div class="form-group">
-              <%= f.label :username %>
-              <%= f.text_field :username, class: "form-control", placeholder: "Enter username" %>
-            </div>
+          </div>
 
-            <div class="form-group">
-              <%= f.label :email %>
-              <%= f.text_field :email, class: "form-control", placeholder: "Enter email" %>
-            </div>
+          </div>
 
-            <div class="form-group">
-              <%= f.label :password %>
-              <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
-              <span id="helpBlock2" class="help-block">
-                <small>
-                + Password must contain 1 numerical <br/>
-                + Password must contain 1 uppercase letter <br/>
-                + Password length must be greater than 8</span>
-              </small>
-            </div>
-            <div class="form-group">
-              <%= f.label :password_confirmation %>
-              <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm password" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.submit "Sign up", class: "btn btn-success" %>
-            </div>
-          <% end %>
 
         </div>
 
