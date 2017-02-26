@@ -1,7 +1,7 @@
 <div class="col-xs-12">
   <div class="panel panel-default">
     <div class="panel-body">
-      <div class="media">
+      <div class="col-xs-12">
         <% if logged_in? && posts.user_id == current_user.id %>
           <div class="for-del">
             <i class="fa fa-chevron-down fa-sm del-toggle"></i>
@@ -16,7 +16,8 @@
             </div>
           </div>
         <% end %>
-        <div class="media-left">
+
+        <div class="media-left col-xs-6 col-sm-1 pad">
 
           <div class="btn-group-vertical btn-broup-sm">
             <%= render partial: "posts/upvote", locals: { upvote: posts } %>
@@ -28,54 +29,53 @@
             <%= render partial: "posts/downvote", locals: { downvote: posts } %>
           </div>
         </div>
-        <div class="media-right">
-
+        <div class="col-xs-6 col-sm-2 col-sm-push-9 pad">
+          <%= link_to posts.img_url do %>
+          <img src="<%= posts.img_url %>" width="90px" height="90px" alt="" class="media-object ">
+          <% end %>
         </div>
-        <div class="media-body">
-          <!-- image thumbnail for post -->
+        <div class="col-xs-12 col-sm-9 col-sm-pull-2 pad">
+          <div class="media-body ">
+            <!-- image thumbnail for post -->
 
 
+            <!-- link to show page for post -->
 
-
-              <%= link_to posts.img_url do %>
-              <img src="<%= posts.img_url %>" width="70px" height="70px" alt="" class="media-object pull-right">
+              <%= link_to(posts.link) do %>
+              <h3 class="media-heading">
+                <%= posts.title %>
+              </h3>
               <% end %>
 
+            <!-- end show page link -->
 
+            <!-- header body text & truncated -->
+                  <%= truncate(posts.body, length: 100, omission: '... (click to see more)') %>
+                  <br/>
+                  <br/>
+                  <!-- time made info -->
+                  <label class="label label-primary"><%= posts.user.username %></label>
+                  <small>Posted <%= time_ago_in_words(posts.created_at) %> ago.</small>
 
-          <!-- link to show page for post -->
+                  <!-- view link button to open link associated with post -->
+                  <div class="post-foot">
+                    <div class="media-left">
+                      <%= link_to pluralize(posts.comments.count, "comment"), post_path(posts), class: "btn btn-default btn-xs pad" %>
 
-            <%= link_to(posts.link) do %>
-            <h3 class="media-heading">
-              <%= posts.title %>
-            </h3>
-            <% end %>
+                      <% posts.categories.each do |category| %>
+                        <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs pad" %>
+                      <% end %>
+                    </div>
 
-          <!-- end show page link -->
+                    <!-- edit buttons -->
 
-          <!-- header body text & truncated -->
-                <%= truncate(posts.body, length: 100, omission: '... (click to see more)') %>
-                <br/>
-                <br/>
-                <!-- time made info -->
-                <label class="label label-primary"><%= posts.user.username %></label>
-                <small>Posted <%= time_ago_in_words(posts.created_at) %> ago.</small>
-
-                <!-- view link button to open link associated with post -->
-                <div class="post-foot">
-                  <div class="media-left">
-                    <%= link_to pluralize(posts.comments.count, "comment"), post_path(posts), class: "btn btn-default btn-xs pad" %>
-
-                    <% posts.categories.each do |category| %>
-                      <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs pad" %>
-                    <% end %>
                   </div>
 
-                  <!-- edit buttons -->
-
-                </div>
-
+          </div>
         </div>
+
+
+
       </div>
     </div>
 

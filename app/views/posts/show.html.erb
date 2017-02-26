@@ -6,7 +6,7 @@
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="media">
+          <div class="col-xs-12">
             <% if logged_in? && @post.user_id == current_user.id %>
               <div class="for-del">
                 <!-- image thumbnail for post -->
@@ -24,7 +24,7 @@
 
               </div>
             <% end %>
-            <div class="media-left">
+            <div class="media-left col-xs-6 col-sm-1 pad">
 
               <div class="btn-group-vertical btn-group-sm">
 
@@ -40,44 +40,47 @@
                   <!-- end downvote form -->
               </div>
             </div>
-            <div class="media-right">
-
-            </div>
-            <div class="media-body">
-
+            <div class="col-xs-6 col-sm-2 col-sm-push-9 pad">
               <%= link_to @post.img_url do %>
               <img src="<%= @post.img_url %>" width="100px" height="100px" alt="" class="media-object pull-right">
               <% end %>
 
-              <h2 class="media-heading">
-                <%= @post.title %>
-              </h2>
-
-              <!-- header body text & truncated -->
-              <%= @post.body %>
-              <br/>
-              <br/>
-              <!-- time made info -->
-              <label class="label label-primary"><%= @post.user.username %></label>
-              <small>Posted <%= time_ago_in_words(@post.created_at) %> ago.</small>
-
-              <!-- view link button to open link associated with post -->
-              <div class="post-foot">
-                <div class="pull-left">
-
-                  <%= link_to "View Link", @post.link, class: "btn btn-default btn-xs" %>
-                  <% @post.categories.each do |category| %>
-                    <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs" %>
-
-                  <% end %>
-                </div>
-              </div>
-
-
-
-
             </div>
-            <!-- end media body -->
+            <div class="col-xs-12 col-sm-9 col-sm-pull-2 pad">
+              <div class="media-body">
+
+
+                <h2 class="media-heading">
+                  <%= @post.title %>
+                </h2>
+
+                <!-- header body text & truncated -->
+                <%= @post.body %>
+                <br/>
+                <br/>
+                <!-- time made info -->
+                <label class="label label-primary"><%= @post.user.username %></label>
+                <small>Posted <%= time_ago_in_words(@post.created_at) %> ago.</small>
+
+                <!-- view link button to open link associated with post -->
+                <div class="post-foot">
+                  <div class="pull-left">
+
+                    <%= link_to "View Link", @post.link, class: "btn btn-default btn-xs" %>
+                    <% @post.categories.each do |category| %>
+                      <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs" %>
+
+                    <% end %>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+              <!-- end media body -->
+            </div>
+
             </div>
             <!-- end media -->
           </div>

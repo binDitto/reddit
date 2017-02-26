@@ -158,8 +158,9 @@ ul.category {
   border-radius: 5px;
   display:none;
   position: absolute;
-  right: 35px;
-  top: 50px;
+  z-index: 99;
+  right: 20px;
+  top: 40px;
   box-shadow: 1px 1px 5px  #eaeaea;
 }
 .post-foot {
