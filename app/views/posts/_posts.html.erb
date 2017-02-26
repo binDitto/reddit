@@ -17,24 +17,25 @@
           </div>
         <% end %>
 
-        <div class="media-left col-xs-6 col-sm-1 pad">
 
-          <div class="btn-group-vertical btn-broup-sm">
-            <%= render partial: "posts/upvote", locals: { upvote: posts } %>
-
-            <button type="button" name="button" class="btn btn-default">
-              <%= posts.score %>
-            </button>
-
-            <%= render partial: "posts/downvote", locals: { downvote: posts } %>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-sm-push-9 pad">
+        <div class="col-xs-10 col-xs-push-2 col-sm-2 col-sm-push-10 pad">
           <%= link_to posts.img_url do %>
           <img src="<%= posts.img_url %>" width="90px" height="90px" alt="" class="media-object ">
           <% end %>
         </div>
-        <div class="col-xs-12 col-sm-9 col-sm-pull-2 pad">
+        <div class="col-xs-12 col-sm-10 col-sm-pull-2 pad">
+          <div class="media-left ">
+
+            <div class="btn-group-vertical btn-broup-sm">
+              <%= render partial: "posts/upvote", locals: { upvote: posts } %>
+
+              <button type="button" name="button" class="btn btn-default">
+                <%= posts.score %>
+              </button>
+
+              <%= render partial: "posts/downvote", locals: { downvote: posts } %>
+            </div>
+          </div>
           <div class="media-body ">
             <!-- image thumbnail for post -->
 
