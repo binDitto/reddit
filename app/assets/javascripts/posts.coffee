@@ -5,6 +5,7 @@ $(document).ready ->
   $(document).on 'click', '.above-toggle', (e) ->
     e.preventDefault()
     $('.above').fadeIn(2000)
+    $('body').toggleClass("hideoverflow")
     e.stopPropagation()
 
   $(document).on 'click', '.thefa', (e) ->
@@ -18,8 +19,9 @@ $(document).ready ->
     $('.reply-toggle').not($(this).parent().find('.reply-toggle')).hide()
     e.stopPropagation()
 
-$(document).on 'click', '.del-toggle', (e) ->
-  e.preventDefault()
-  $(this).parent().find('.toggle').fadeToggle(500)
-  $('.toggle').not($(this).parent().find('.toggle')).hide()
-  e.stopPropagation()
+  $(document).on 'click', '.del-toggle', (e) ->
+    e.preventDefault()
+    $(this).parent().find('.toggle').fadeToggle(500)
+    $('.toggle').not($(this).parent().find('.toggle')).hide()
+
+    e.stopPropagation()

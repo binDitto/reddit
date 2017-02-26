@@ -4,6 +4,9 @@
 body {
   overflow: auto;
 }
+.hideoverflow {
+  overflow: hidden;
+}
 .above {
   display: none;
   background: rgba(0,0,0, 0.9);
