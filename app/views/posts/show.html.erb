@@ -35,13 +35,15 @@
               <!-- header body text & truncated -->
               <%= @post.body %>
               <br/>
+              <br/>
               <!-- time made info -->
+              <label class="label label-primary"><%= @post.user.username %></label>
               <small>Posted <%= time_ago_in_words(@post.created_at) %> ago.</small>
               <hr>
               <!-- view link button to open link associated with post -->
 
               <div class="pull-left">
-              
+
                 <%= link_to "View Link", @post.link, class: "btn btn-default btn-xs" %>
                 <% @post.categories.each do |category| %>
                   <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs" %>

@@ -28,13 +28,15 @@
               <%= posts.title %>
             </h4>
             <% end %>
-        
+
           <!-- end show page link -->
 
           <!-- header body text & truncated -->
                 <%= truncate(posts.body, length: 100, omission: '... (click to see more)') %>
                 <br/>
+                <br/>
                 <!-- time made info -->
+                <label class="label label-primary"><%= posts.user.username %></label>
                 <small>Posted <%= time_ago_in_words(posts.created_at) %> ago.</small>
                 <hr>
                 <!-- view link button to open link associated with post -->
