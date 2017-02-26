@@ -134,7 +134,16 @@ ul.category {
 }
 
 // edit delete button toggle
+.for-del {
+  // border: 1px solid #eaeaea;
+  display:block;
+  text-align: right;
+  padding: 5px;
+  margin: 2px 0px;
+}
 .del-toggle {
+  position: relative;
+  right: 0px;
   border: 1px solid #eaeaea;
   padding: 5px;
   border-radius: 5px;
@@ -142,15 +151,15 @@ ul.category {
 .del-toggle:hover {
   background: lightgray;
 }
-.media-body .toggle {
+.for-del .toggle {
   padding: 10px;
   border: 1px solid #eaeaea;
   background-color: white;
   border-radius: 5px;
   display:none;
   position: absolute;
-  right: 30px;
-  top: 45px;
+  right: 35px;
+  top: 50px;
   box-shadow: 1px 1px 5px  #eaeaea;
 }
 .post-foot {

@@ -7,10 +7,25 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="media">
+            <% if logged_in? && @post.user_id == current_user.id %>
+              <div class="for-del">
+                <!-- image thumbnail for post -->
 
+                  <i class="fa fa-chevron-down fa-sm del-toggle"></i>
+                  <div class="btn-group toggle pull-right">
+                    <%= link_to(edit_post_path(@post), class: "btn btn-primary btn-xs") do %>
+                      Edit <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to(post_path(@post), method: :delete,
+                    data: { confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" ) do %>
+                      Delete <i class="fa fa-trash-o"></i>
+                    <% end %>
+                  </div>
+
+              </div>
+            <% end %>
             <div class="media-left">
-              <br/>
-              <br/>
+
               <div class="btn-group-vertical btn-group-sm">
 
                   <%= render partial: "posts/upvote", locals: { upvote: @post } %>
@@ -29,23 +44,9 @@
 
             </div>
             <div class="media-body">
-              <!-- image thumbnail for post -->
-              <% if logged_in? && @post.user_id == current_user.id %>
-                <i class="fa fa-chevron-down fa-sm pull-right del-toggle"></i>
-                <div class="btn-group toggle pull-right">
-                  <%= link_to(edit_post_path(@post), class: "btn btn-primary btn-xs") do %>
-                    Edit <i class="fa fa-pencil"></i>
-                  <% end %>
-                  <%= link_to(post_path(@post), method: :delete,
-                  data: { confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" ) do %>
-                    Delete <i class="fa fa-trash-o"></i>
-                  <% end %>
-                </div>
-              <% end %>
-              <br/>
-              <br/>
+
               <%= link_to @post.img_url do %>
-              <img src="<%= @post.img_url %>" width="70px" height="70px" alt="" class="media-object pull-right">
+              <img src="<%= @post.img_url %>" width="100px" height="100px" alt="" class="media-object pull-right">
               <% end %>
 
               <h2 class="media-heading">
