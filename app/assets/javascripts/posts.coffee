@@ -17,3 +17,9 @@ $(document).ready ->
     $(this).parent().find('.reply-toggle').fadeToggle(1000)
     $('.reply-toggle').not($(this).parent().find('.reply-toggle')).hide()
     e.stopPropagation()
+
+$(document).on 'click', '.del-toggle', (e) ->
+  e.preventDefault()
+  $(this).parent().find('.toggle').fadeToggle(500)
+  $('.toggle').not($(this).parent().find('.toggle')).hide()
+  e.stopPropagation()

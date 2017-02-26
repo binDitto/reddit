@@ -1,5 +1,18 @@
 <div class="jumbotron">
   <div class="container">
+    <% if Category.any? %>
+    <ul class="category">
+    <% Category.all.each do |cat| %>
+
+        <% if cat.posts.any? %>
+          <li class="category-item">
+            <%= link_to "+ #{cat.name}", category_path(cat) %>
+          </li>
+        <% end %>
+
+    <% end %>
+    </ul>
+    <% end %>
     <h1>Posts</h1>
     <p>Posts for you to read.</p>
     <% if logged_in? %>
