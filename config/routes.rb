@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  resources :posts do
+  resources :posts, except: [ :new ] do
     resources :votes, only: [ :create ], module: :posts
     resources :comments, only: [ :create, :destroy ], module: :posts
   end

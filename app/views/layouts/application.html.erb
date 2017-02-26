@@ -10,10 +10,19 @@
 
   <body>
     <div class="wrapper">
+    <% unless User.any? %>
+      <%= render 'users/signup' %>
+    <% end %>
+    <%= render 'posts/add_post' %>
     <%= render partial: 'layouts/nav' %>
     <%= render partial: 'layouts/flash' %>
 
       <%= yield %>
+
     </div>
+    <footer class="footer">
+
+      <h6>Made by Bin</h6>
+    </footer>
   </body>
 </html>

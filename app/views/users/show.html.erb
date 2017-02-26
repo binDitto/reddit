@@ -1,28 +1,62 @@
+<div class="jumbotron">
+
+</div>
+
 <div class="container">
   <div class="row ">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <div class="panel panel-default">
+      <div class="panel panel-default" align="center">
         <div class="panel-heading">
           <div class="btn-group">
             <%= link_to "Users", users_path, class: "btn btn-default btn-sm" %>
-            <%= link_to(edit_user_path(@user), class: "btn btn-primary btn-sm" ) do %>
-              <i class="fa fa-pencil"></i>
+            <% if logged_in? && @user == current_user %>
+              <%= link_to(edit_user_path(@user), class: "btn btn-primary btn-sm" ) do %>
+                Edit <i class="fa fa-pencil"></i>
+              <% end %>
+              <%= link_to(user_path(@user), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Deactivate for sure?" } ) do %>
+                Delete <i class="fa fa-trash-o"></i>
+              <% end %>
             <% end %>
           </div>
           <h2><%= @user.username.capitalize %>'s Profile</h2>
 
         </div>
         <div class="panel-body">
-          <ul class='list-group'>
-            <div class="col-xs-8 col-xs-offset-2">
-              <li class='list-group-item'>
+          <div class='col-xs-8 col-xs-offset-2'>
+            <div class="panel panel-default">
+              <div class='panel-heading'>
                 Email: <%= @user.email %>
-              </li>
-              <li class='list-group-item'>
-                Email: <%= @user.email %>
-              </li>
+              </div>
+              <div class='panel-body'>
+                <%= link_to user_posts_path(@user) do %>
+                <div class="col-xs-4" align="center">
+                  <h3><%= @user.posts.count %></h3>
+                  <hr>
+                  <h6>Posts</h6>
+                </div>
+                <% end %>
+
+                <%= link_to user_comments_path(@user) do %>
+
+                <div class="col-xs-4" align="center">
+                  <h3><%= @user.comments.count %></h3>
+                  <hr>
+                  <h6>Comments</h6>
+                </div>
+                <% end %>
+
+
+
+
+                <div class="col-xs-4" align="center">
+                  <h3><%= @user.votes.count %></h3>
+                  <hr>
+                  <h6>Votes</h6>
+                </div>
+
+              </div>
             </div>
-          </ul>
+          </div>
         </div>
 
       </div>

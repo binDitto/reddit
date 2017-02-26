@@ -5,12 +5,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order("created_at ASC").sort_by(&:score).reverse
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comments = @post.comments.order("comments.created_at ASC").sort_by(&:score).reverse
   end
 
   # GET /posts/new
@@ -26,13 +27,16 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user if current_user
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        flash[:success] = "#{@post.title} created!"
+        format.html { redirect_to posts_path}
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        flash[:danger] = "Failed to save"
+        format.html { redirect_to posts_path}
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -41,9 +45,11 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        flash[:success] = "Post updated"
+        format.html { redirect_to @post}
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -56,8 +62,9 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post.destroy
+    flash[:danger] = "Post removed!"
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
   end
@@ -70,6 +77,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :link, :img_url, :user_id)
+      params.require(:post).permit(:title, :body, :link, :img_url, :user_id, category_ids: [])
     end
 end

@@ -1,7 +1,4 @@
-<div class="jumbotron">
-
-</div>
-<div class="abover" >
+<div class="above" >
   <div class="container-table">
 
     <div class="row vertical-center-row">
@@ -12,15 +9,19 @@
 
 
           <div class="panel-heading">
+            <div class="pull-right thefa">
+              <a href="#">
+              <i class="fa fa-times fa-2x"></i>
+              </a>
+            </div>
 
 
-
-              <h1 align="center">Edit post</h1>
+              <h1 align="center">Add a post</h1>
 
 
           </div>
 
-          <%= form_for(@post, html: { class: "form-horizontal"}) do |p| %>
+          <%= form_for([@post, Post.new], html: { class: "form-horizontal"}) do |p| %>
 
           <div class="panel-body">
             <div class="form-group">

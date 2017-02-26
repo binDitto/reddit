@@ -1,2 +1,22 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class="jumbotron">
+  <div class="container">
+
+    <h1>What's HOT</h1>
+    <p>Latest posts that are up in the charts.</p>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% if Post.any? %>
+      <%= render partial: "posts/posts", collection: @posts %>
+    <% else %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>No posts to show. Sign in and make a post.</h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

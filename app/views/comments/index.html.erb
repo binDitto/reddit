@@ -1,0 +1,56 @@
+<div class="jumbotron">
+
+</div>
+<div class="container">
+  <div class="row">
+
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <ul class="list-group">
+          <% @comments.each do |comments| %>
+          <li class="list-group-item thread">
+            <div class="media">
+
+              <div class="media-body">
+                <div class="pull-right">
+
+
+
+                              <% if comments.user == current_user %>
+                                <div class="btn-group pull-right">
+                                  <%= link_to "Delete", comment_comment_path(comments, comments), method: :delete,
+                                                        data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %>
+
+
+                                </div>
+                              <% end %>
+                </div>
+                <div class="media-heading">
+                  <h4>
+                    <%= link_to user_path(comments.user) do %>
+                      <span class="label label-<%= logged_in? && (comments.user_id == current_user.id) ? "primary" : "default" %>">
+                        <%= comments.user.username %>
+                      </span>
+                    <% end %>
+                  <small>
+                    &nbsp; <%= time_ago_in_words(comments.created_at).capitalize %> ago
+                  </small>
+                  </h4>
+
+                </div>
+
+                <%= comments.body %>
+
+
+
+              </div>
+
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+
+
+
+  </div>
+</div>

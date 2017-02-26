@@ -1,0 +1,22 @@
+<!-- form to make comments on post -->
+<%= form_for([commentable, Comment.new], html: {class: "form-inline"}) do |c| %>
+  <% if Comment.new.errors.any? %>
+    <div class="well well-danger">
+      <h2><%= pluralize(Comment.new.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% Comment.new.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= c.text_field :body, col: 4 ,class: "form-control", placeholder: "Enter a comment" %>
+  </div>
+  <div class="form-group">
+    <%= c.submit "Post", class: "btn btn-success " %>
+  </div>
+<% end %>
+<!-- end form -->

@@ -1,29 +1,101 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="media">
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+            <div class="media-left">
+              <div class="btn-group-vertical btn-group-sm">
 
-<p>
-  <strong>Link:</strong>
-  <%= @post.link %>
-</p>
+                  <%= render partial: "posts/upvote", locals: { upvote: @post } %>
+                    <!-- end upvote form -->
 
-<p>
-  <strong>Img url:</strong>
-  <%= @post.img_url %>
-</p>
+                <button type="button" name="button" class="btn btn-default btn-sm">
+                  <%= @post.score %>
+                </button>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
+                  <!-- form for downvote -->
+                  <%= render partial: "posts/downvote", locals: { downvote: @post } %>
+                  <!-- end downvote form -->
+              </div>
+            </div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+            <div class="media-body">
+              <!-- image thumbnail for post -->
+              <img src="<%= @post.img_url %>" width="70px" height="70px" alt="" class="media-object pull-right">
+
+              <h2 class="media-heading">
+                <%= @post.title %>
+              </h2>
+
+              <!-- header body text & truncated -->
+              <%= @post.body %>
+              <br/>
+              <!-- time made info -->
+              <small>Posted <%= time_ago_in_words(@post.created_at) %> ago.</small>
+              <hr>
+              <!-- view link button to open link associated with post -->
+
+              <div class="pull-left">
+                <%= link_to "All Posts", posts_path, class: "btn btn-default btn-xs" %>
+                <%= link_to "View Link", @post.link, class: "btn btn-default btn-xs" %>
+                <% @post.categories.each do |category| %>
+                  <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs" %>
+
+                <% end %>
+              </div>
+
+              <!-- edit buttons -->
+              <div class="pull-right">
+
+                <% if logged_in? && @post.user_id == current_user.id %>
+
+                  <div class="btn-group toggle pull-left">
+                    <%= link_to(edit_post_path(@post), class: "btn btn-primary btn-xs") do %>
+                      Edit <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to(post_path(@post), method: :delete,
+                    data: { confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" ) do %>
+                      Delete <i class="fa fa-trash-o"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+
+              </div>
+
+            </div>
+            <!-- end media body -->
+            </div>
+            <!-- end media -->
+          </div>
+          <!-- end panel body -->
+
+
+          <div class="panel-footer">
+            <% if logged_in? %>
+
+              <%= render partial: "comments/form", locals: { commentable: @post } %>
+
+            <% else %>
+              <h3>Please log in to make a comment.</h3>
+
+            <% end %>
+            <!-- show all post comments -->
+            <% if @post.comments.any? %>
+              <ul class="list-group">
+                <%= render partial: "comments/comments", collection: @comments %>
+              </ul>
+            <% end %>
+            <!-- end show post comments -->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

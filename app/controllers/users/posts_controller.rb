@@ -2,7 +2,7 @@ class Users::PostsController < PostsController
   before_action :set_user_show_posts
 
   def index
-    @posts = @user.posts
+    @user_posts = @user.posts.order("posts.created_at ASC").sort_by(&:score).reverse
   end
 
   private

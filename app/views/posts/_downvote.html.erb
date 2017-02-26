@@ -1,6 +1,6 @@
 <%= form_for([downvote, Vote.new]) do |v| %>
   <%= v.hidden_field :amount, value: -1 %>
-  <%= button_tag(class: "btn btn-default btn-sm btn-top") do %>
-    <i class="fa fa-chevron-down fa-lg"></i>
+  <%= button_tag(class: "btn btn-default btn-sm btn-top bottom") do %>
+    <i class="fa fa-chevron-down fa-lg "></i>
   <% end %>
 <% end %>

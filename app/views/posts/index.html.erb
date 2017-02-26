@@ -1,8 +1,23 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>Posts</h1>
+    <p>Posts for you to read.</p>
+    <% if logged_in? %>
+      <a href="#" class="btn btn-warning btn-lg above-toggle">Add Post  <i class="fa fa-plus"></i></a>
+    <% else %>
+      <h4>Log in to add a post.</h4>
+    <% end %>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-6">
+    <% if Post.any? %>
+      <%= render partial: "posts/posts", collection: @user_posts %>
       <%= render partial: "posts/posts", collection: @posts %>
+    <% else %>
+      <h1 style="{color: white}">No Posts Yet.</h1>
+    <% end %>
 
-    </div>
   </div>
 </div>

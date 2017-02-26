@@ -1,3 +1,86 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.above {
+  display: none;
+  background: rgba(0,0,0, 0.9);
+  z-index: 999;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.abover {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+// These will center the div within the middle of screen
+.container-table {
+
+  overflow: hidden;
+   height: 100%;
+   width: 100%;
+   display: table;
+}
+.vertical-center-row {
+  overflow:hidden;
+   display: table-cell;
+   vertical-align: middle;
+}
+
+// end centering
+
+
+.toggle-reply {
+
+}
+.toggle-reply:hover {
+  color: #eaeaea;
+  cursor: pointer;
+
+}
+
+.reply-toggle {
+  display:none;
+  border: 1px solid #eaeaea;
+  width: auto;
+  margin:10px;
+  padding: 10px;
+}
+
+.panel-footer .form-inline {
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 10px;
+  padding: 0px 0px 10px 0px;
+  .form-group {
+    padding: 5px;
+    width: 100%;
+    .form-control {
+      width: 100%;
+    }
+    .btn {
+    }
+  }
+}
+.reply-toggle .form-inline {
+  border-bottom: 0px;
+  padding: 5px;
+  .form-group {
+    width: 100%;
+    .form-control {
+      width: 100%;
+    }
+    .btn {
+    }
+  }
+}
+
+.goo {
+  padding: 10px 0px 10px 0px;
+  margin: 20px 0px 0px 0px;
+  border-top: 1px solid #eaeaea;
+}

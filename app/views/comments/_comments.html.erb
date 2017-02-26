@@ -1,0 +1,82 @@
+
+    <li class="list-group-item thread">
+      <div class="media">
+
+        <div class="media-body">
+          <div class="pull-right">
+
+
+
+                        <% if comments.user == current_user %>
+                          <div class="btn-group pull-right">
+                            <%= link_to "Delete", comment_comment_path(comments, comments), method: :delete,
+                                                  data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %>
+
+
+                          </div>
+                        <% end %>
+          </div>
+          <div class="media-heading">
+            <h4>
+              <%= link_to user_path(comments.user) do %>
+                <span class="label label-<%= logged_in? && (comments.user_id == current_user.id) ? "primary" : "default" %>">
+                  <%= comments.user.username %>
+                </span>
+              <% end %>
+            <small>
+              &nbsp; <%= time_ago_in_words(comments.created_at).capitalize %> ago
+            </small>
+            </h4>
+
+          </div>
+
+          <%= comments.body %>
+
+
+          <div class="goo">
+
+            <% if logged_in? %>
+
+                <span class="toggle-reply pull-left">
+                  <button class="btn btn-default btn-xs">
+                    <i class="fa fa-reply">
+                    </i>
+                  </button>
+                </span>
+
+                <span>
+                  <%= form_for([comments, Vote.new], class: "pull-left") do |c| %>
+                    <%= c.hidden_field :amount, value: 1 %>
+                    <%= button_tag(class:"btn btn-default btn-xs") do %>
+                      <i class="fa fa-heart"></i>
+                      <%= comments.score %>
+                    <% end %>
+                  <% end %>
+                </span>
+
+
+
+              <div class="reply-toggle">
+                <span class="label label-<%= logged_in? && (comments.user_id == current_user.id) ? "primary" : "default" %>">
+                  <%= current_user.username %>
+                </span>
+                <%= render partial: "comments/form", locals: { commentable: comments } %>
+              </div>
+            <br/>
+            <% else %>
+              <h3>Please log in to make a comment.</h3>
+
+            <% end %>
+
+          </div>
+
+        </div>
+
+      </div>
+      <% if comments.comments.any? %>
+      <ul class="list-group">
+        <%= render partial: "comments/comments", collection: comments.comments %>
+      </ul>
+      <% end %>
+
+    </li>
