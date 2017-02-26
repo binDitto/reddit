@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  resources :posts, except: [ :new ] do
+  resources :posts, except: [ :index, :new ] do
     resources :votes, only: [ :create ], module: :posts
     resources :comments, only: [ :create, :destroy ], module: :posts
   end
@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     resources :comments, only: [ :create, :destroy ], module: :comments
   end
 
-  root 'welcome#index'
+  # root 'welcome#index'
+  root 'posts#index'
 
   # sessions logging in and logging out
   get 'login', to: 'sessions#login'

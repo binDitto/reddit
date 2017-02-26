@@ -28,6 +28,12 @@
               <%= p.label :title, class: "col-xs-12 col-sm-2 control-label" %>
               <div class="col-xs-12 col-sm-10">
                 <%= p.text_field :title, class: "form-control", placeholder: "Enter a title" %>
+                <span id="helpBlock2" class="help-block">
+                  <small>
+                  + Title length must be > 5 <br/>
+                  + Must be unique
+                </small>
+                </span>
               </div>
             </div>
 
@@ -49,6 +55,12 @@
               <%= p.label :body, class: "col-xs-12 col-sm-2 control-label "%>
               <div class="col-xs-12 col-sm-10 ">
                 <%= p.text_area :body, rows: "5", class: "form-control", placeholder: "Enter description" %>
+                <span id="helpBlock2" class="help-block">
+                  <small>
+                  + Body length must be > 10 <br/>
+                  + Must be unique
+                </small>
+                </span>
               </div>
             </div>
             <!-- select boxes for categories -->

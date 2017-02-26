@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all.order("created_at ASC").sort_by(&:score).reverse
+    
   end
 
   # GET /posts/1
@@ -32,11 +33,11 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         flash[:success] = "#{@post.title} created!"
-        format.html { redirect_to posts_path}
+        format.html { redirect_to root_path}
         format.json { render :show, status: :created, location: @post }
       else
         flash[:danger] = "Failed to save"
-        format.html { redirect_to posts_path}
+        format.html { redirect_to root_path}
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +65,7 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:danger] = "Post removed!"
     respond_to do |format|
-      format.html { redirect_to posts_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
