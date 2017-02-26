@@ -11,6 +11,7 @@ $(document).ready ->
   $(document).on 'click', '.thefa', (e) ->
     e.preventDefault()
     $('.above').fadeOut(1000)
+    $('body').toggleClass("hideoverflow")
     e.stopPropagation()
 
   $(document).on 'click', '.toggle-reply', (e) ->
