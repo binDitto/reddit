@@ -9,6 +9,8 @@
           <div class="media">
 
             <div class="media-left">
+              <br/>
+              <br/>
               <div class="btn-group-vertical btn-group-sm">
 
                   <%= render partial: "posts/upvote", locals: { upvote: @post } %>
@@ -23,7 +25,9 @@
                   <!-- end downvote form -->
               </div>
             </div>
+            <div class="media-right">
 
+            </div>
             <div class="media-body">
               <!-- image thumbnail for post -->
               <% if logged_in? && @post.user_id == current_user.id %>
