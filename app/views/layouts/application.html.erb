@@ -8,13 +8,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-
+ <%= render 'posts/add_post' %>
   <body>
     <div class="wrapper">
     <% unless User.any? %>
       <%= render 'users/signup' %>
     <% end %>
-    <%= render 'posts/add_post' %>
+
     <%= render partial: 'layouts/nav' %>
     <%= render partial: 'layouts/flash' %>
 

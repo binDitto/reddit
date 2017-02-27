@@ -12,7 +12,7 @@ body {
   background: rgba(0,0,0, 0.9);
   z-index: 999;
   position: absolute;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   overflow: scroll;
 }
@@ -25,7 +25,7 @@ body {
   background: rgba(0,0,0, 1);
   z-index: 999;
   position: absolute;
-  height: 100%;
+  height: 100vh;
   min-height: 100%;
   width: 100%;
   overflow: hidden;
@@ -48,7 +48,11 @@ body {
 
 // end centering
 
-
+.goo {
+  padding: 10px 0px 10px 0px;
+  margin: 20px 0px 0px 0px;
+  border-top: 1px solid #eaeaea;
+}
 .toggle-reply {
 
 }
@@ -57,13 +61,35 @@ body {
   cursor: pointer;
 
 }
+.reply-ul {
+  display: block;
+  padding-left: 0px;
+  border: 1px solid #eaeaea;
+  li {
+    display: inline-block;
+  }
+}
 
 .reply-toggle {
-  display:none;
+  display: none;
   border: 1px solid #eaeaea;
   width: auto;
   margin:10px;
   padding: 10px;
+}
+
+
+.reply-toggle .form-inline {
+  border-bottom: 0px;
+  padding: 5px;
+  .form-group {
+    width: 100%;
+    .form-control {
+      width: 100%;
+    }
+    .btn {
+    }
+  }
 }
 
 .panel-footer .form-inline {
@@ -80,24 +106,7 @@ body {
     }
   }
 }
-.reply-toggle .form-inline {
-  border-bottom: 0px;
-  padding: 5px;
-  .form-group {
-    width: 100%;
-    .form-control {
-      width: 100%;
-    }
-    .btn {
-    }
-  }
-}
 
-.goo {
-  padding: 10px 0px 10px 0px;
-  margin: 20px 0px 0px 0px;
-  border-top: 1px solid #eaeaea;
-}
 
 ul.category {
   padding-left: 0px;
@@ -141,8 +150,8 @@ ul.category {
   // border: 1px solid #eaeaea;
   display:block;
   text-align: right;
-  padding: 5px;
-  margin: 2px 0px;
+  padding: 5px 0px;
+  margin: 0px 0px 15px 0px;
 }
 .del-toggle {
   position: relative;
@@ -159,24 +168,26 @@ ul.category {
   border: 1px solid #eaeaea;
   background-color: white;
   border-radius: 5px;
-  display:none;
+  display: none;
   position: absolute;
   z-index: 99;
-  right: 20px;
-  top: 40px;
+  right: 15px;
+  top: 45px;
   box-shadow: 1px 1px 5px  #eaeaea;
 }
 .post-foot {
   border-top: 1px solid #eaeaea;
   display: block;
-  margin: 10px 0px;
+  margin: 15px 0px 0px 0px;
   padding: 10px 0px;
 }
 
-.reply-ul {
-  display: block;
+
+
+.post-foot > ul {
+  display: inline-block;
   padding-left: 0px;
-  li {
-    display: inline-block;
-  }
+}
+.post-foot > ul > li {
+  display: inline-block;
 }

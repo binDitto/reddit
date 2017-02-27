@@ -2,17 +2,17 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12">
+
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="col-xs-12">
-            <% if logged_in? && @post.user_id == current_user.id %>
-              <div class="for-del">
-                <!-- image thumbnail for post -->
 
-                  <i class="fa fa-chevron-down fa-sm del-toggle"></i>
-                  <div class="btn-group toggle pull-right">
+            <div class="for-del">
+              <div class="pull-right">
+                <i class="fa fa-chevron-down fa-sm del-toggle"></i>
+                <% if logged_in? && @post.user_id == current_user.id %>
+
+                  <div class="btn-group toggle ">
                     <%= link_to(edit_post_path(@post), class: "btn btn-primary btn-xs") do %>
                       Edit <i class="fa fa-pencil"></i>
                     <% end %>
@@ -21,71 +21,83 @@
                       Delete <i class="fa fa-trash-o"></i>
                     <% end %>
                   </div>
-
+                <% end %>
               </div>
-            <% end %>
 
-            <div class="col-xs-10 col-xs-push-2 col-sm-2 col-sm-push-10 pad">
-              <%= link_to @post.img_url do %>
-              <img src="<%= @post.img_url %>" width="100px" height="100px" alt="" class="media-object ">
-              <% end %>
+              <div class="media-left">
+
+                <% @post.categories.each do |category| %>
+                  <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs pad" %>
+                <% end %>
+              </div>
 
             </div>
-            <div class="col-xs-12 col-sm-10 col-sm-pull-2 pad">
-              <div class="media-left ">
 
-                <div class="btn-group-vertical btn-group-sm">
+          </div>
 
-                    <%= render partial: "posts/upvote", locals: { upvote: @post } %>
-                      <!-- end upvote form -->
 
-                  <button type="button" name="button" class="btn btn-default btn-sm">
-                    <%= @post.score %>
-                  </button>
+          <div class="col-xs-2 col-xs-push-8 col-sm-2 col-sm-push-10 pad">
+            <%= link_to @post.img_url do %>
+              <img src="<%= @post.img_url %>" width="90px" height="90px" alt="" class="media-object ">
+            <% end %>
+          </div>
 
-                    <!-- form for downvote -->
-                    <%= render partial: "posts/downvote", locals: { downvote: @post } %>
-                    <!-- end downvote form -->
-                </div>
-              </div>
+          <div class="col-xs-10 col-xs-pull-2 pad">
 
-              <div class="media-body">
+            <div class="media-body ">
+              <!-- image thumbnail for post -->
+
+
+              <!-- link to show page for post -->
 
 
                 <h2 class="media-heading">
                   <%= @post.title %>
                 </h2>
 
-                <!-- header body text & truncated -->
-                <%= @post.body %>
-                <br/>
-                <br/>
-                <!-- time made info -->
-                <label class="label label-primary"><%= @post.user.username %></label>
-                <small>Posted <%= time_ago_in_words(@post.created_at) %> ago.</small>
 
-                <!-- view link button to open link associated with post -->
-                <div class="post-foot">
-                  <div class="pull-left">
+              <!-- end show page link -->
 
-                    <%= link_to "View Link", @post.link, class: "btn btn-default btn-xs pad" %>
-                    <% @post.categories.each do |category| %>
-                      <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs pad" %>
-
-                    <% end %>
-                  </div>
-                </div>
+              <!-- header body text & truncated -->
+                    <%= truncate(@post.body, length: 100, omission: '... (click to see more)') %>
+                    <br/>
+                    <br/>
+                    <!-- time made info -->
+                    <label class="label label-primary"><%= @post.user.username %></label>
+                    <small>Posted <%= time_ago_in_words(@post.created_at) %> ago</small>
 
 
-
-
-              </div>
-              <!-- end media body -->
-            </div>
 
             </div>
-            <!-- end media -->
+            <!-- view link button to open link associated with post -->
+            <div class="post-foot">
+
+                <ul>
+                  <li>
+                    <%= render partial: "posts/upvote", locals: { upvote: @post } %>
+                  </li>
+                  <li>
+                    <button type="button" name="button" class="btn btn-default btn-sm">
+                      <%= @post.score %>
+                    </button>
+                  </li>
+                  <li>
+                    <%= render partial: "posts/downvote", locals: { downvote: @post } %>
+
+                  </li>
+
+                  <li>
+                    <%= link_to pluralize(@post.comments.count, "comment"), post_path(@post), class: "btn btn-default btn-sm " %>
+                  </li>
+                </ul>
+
+              <!-- edit buttons -->
+
+            </div>
           </div>
+        </div>
+
+
           <!-- end panel body -->
 
 
@@ -95,21 +107,24 @@
               <%= render partial: "comments/form", locals: { commentable: @post } %>
 
             <% else %>
+
               <h3>Please log in to make a comment.</h3>
 
             <% end %>
             <!-- show all post comments -->
             <% if @post.comments.any? %>
+
               <ul class="list-group">
                 <%= render partial: "comments/comments", collection: @comments %>
               </ul>
+
             <% end %>
             <!-- end show post comments -->
 
           </div>
 
-        </div>
+
       </div>
-    </div>
-  </div>
+
+
 </div>

@@ -3,20 +3,19 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
   $(document).on 'click', '.above-toggle', (e) ->
-    e.preventDefault()
-    $('.above').fadeIn(2000)
+    $('.above').fadeIn(500)
     $('body').toggleClass("hideoverflow")
     e.stopPropagation()
 
   $(document).on 'click', '.thefa', (e) ->
     e.preventDefault()
-    $('.above').fadeOut(1000)
+    $('.above').fadeOut(500)
     $('body').toggleClass("hideoverflow")
     e.stopPropagation()
 
   $(document).on 'click', '.toggle-reply', (e) ->
     e.preventDefault()
-    $(this).parent().find('.reply-toggle').fadeToggle(1000)
+    $(this).parent().find('.reply-toggle').fadeToggle(500)
     $('.reply-toggle').not($(this).parent().find('.reply-toggle')).hide()
     e.stopPropagation()
 

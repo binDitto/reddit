@@ -1,41 +1,45 @@
-<div class="col-xs-12">
+<div class="container">
   <div class="panel panel-default">
     <div class="panel-body">
-      <div class="col-xs-12">
-        <% if logged_in? && posts.user_id == current_user.id %>
+        <div class="col-xs-12">
+
           <div class="for-del">
-            <i class="fa fa-chevron-down fa-sm del-toggle"></i>
-            <div class="btn-group toggle pull-right">
-              <%= link_to(edit_post_path(posts), class: "btn btn-primary btn-xs") do %>
-                Edit <i class="fa fa-pencil"></i>
-              <% end %>
-              <%= link_to(post_path(posts), method: :delete,
-              data: { confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" ) do %>
-                Delete <i class="fa fa-trash-o"></i>
+            <div class="pull-right">
+              <i class="fa fa-chevron-down fa-sm del-toggle"></i>
+              <% if logged_in? && posts.user_id == current_user.id %>
+
+                <div class="btn-group toggle ">
+                  <%= link_to(edit_post_path(posts), class: "btn btn-primary btn-xs") do %>
+                    Edit <i class="fa fa-pencil"></i>
+                  <% end %>
+                  <%= link_to(post_path(posts), method: :delete,
+                  data: { confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" ) do %>
+                    Delete <i class="fa fa-trash-o"></i>
+                  <% end %>
+                </div>
               <% end %>
             </div>
+
+            <div class="media-left">
+
+              <% posts.categories.each do |category| %>
+                <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs pad" %>
+              <% end %>
+            </div>
+
           </div>
-        <% end %>
+
+        </div>
 
 
-        <div class="col-xs-10 col-xs-push-2 col-sm-2 col-sm-push-10 pad">
+        <div class="col-xs-2 col-xs-push-8 col-sm-2 col-sm-push-10 pad">
           <%= link_to posts.img_url do %>
-          <img src="<%= posts.img_url %>" width="90px" height="90px" alt="" class="media-object ">
+            <img src="<%= posts.img_url %>" width="90px" height="90px" alt="" class="media-object ">
           <% end %>
         </div>
-        <div class="col-xs-12 col-sm-10 col-sm-pull-2 pad">
-          <div class="media-left ">
 
-            <div class="btn-group-vertical btn-broup-sm">
-              <%= render partial: "posts/upvote", locals: { upvote: posts } %>
+        <div class="col-xs-10 col-xs-pull-2 pad">
 
-              <button type="button" name="button" class="btn btn-default">
-                <%= posts.score %>
-              </button>
-
-              <%= render partial: "posts/downvote", locals: { downvote: posts } %>
-            </div>
-          </div>
           <div class="media-body ">
             <!-- image thumbnail for post -->
 
@@ -58,26 +62,39 @@
                   <label class="label label-primary"><%= posts.user.username %></label>
                   <small>Posted <%= time_ago_in_words(posts.created_at) %> ago.</small>
 
-                  <!-- view link button to open link associated with post -->
-                  <div class="post-foot">
-                    <div class="media-left">
-                      <%= link_to pluralize(posts.comments.count, "comment"), post_path(posts), class: "btn btn-default btn-xs pad" %>
 
-                      <% posts.categories.each do |category| %>
-                        <%= link_to category.name, category_path(category), class: "btn btn-info btn-xs pad" %>
-                      <% end %>
-                    </div>
 
-                    <!-- edit buttons -->
+          </div>
+          <!-- view link button to open link associated with post -->
+          <div class="post-foot">
 
-                  </div>
+              <ul>
+                <li>
+                  <%= render partial: "posts/upvote", locals: { upvote: posts } %>
+                </li>
+                <li>
+                  <button type="button" name="button" class="btn btn-default btn-sm">
+                    <%= posts.score %>
+                  </button>
+                </li>
+                <li>
+                  <%= render partial: "posts/downvote", locals: { downvote: posts } %>
+
+                </li>
+
+                <li>
+                  <%= link_to pluralize(posts.comments.count, "comment"), post_path(posts), class: "btn btn-default btn-sm " %>
+                </li>
+              </ul>
+
+            <!-- edit buttons -->
 
           </div>
         </div>
 
 
 
-      </div>
+
     </div>
 
   </div>
