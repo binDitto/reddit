@@ -2,7 +2,7 @@ class VotesController < ApplicationController
   before_action :require_user
 
   def create
-    @vote = @voteable.votes.new(vote_params)
+    @vote = @voteable.votes.new(amount: params[:amount]) # this is going to pass what's passed into the url params for amount
     @vote.user = current_user if current_user
 
     if @voteable.votes.where(user: current_user, amount: 1).exists? || @voteable.votes.where(user: current_user, amount: -1).exists?
@@ -27,6 +27,6 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.require(:vote).permit(:amount)
+    params.require(:vote).permit(:amount) # This is for filling out forms
   end
 end
