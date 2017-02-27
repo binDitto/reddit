@@ -38,7 +38,7 @@
           <% end %>
         </div>
 
-        <div class="col-xs-10 col-xs-pull-2 pad">
+        <div class="col-xs-8 col-xs-pull-2 col-sm-10 col-sm-pull-2 pad">
 
           <div class="media-body ">
             <!-- image thumbnail for post -->
@@ -73,7 +73,7 @@
                   <%= render partial: "posts/upvote", locals: { upvote: posts } %>
                 </li>
                 <li>
-                  <button type="button" name="button" class="btn btn-default btn-sm">
+                  <button type="button" name="button" class="btn btn-default btn-sm pad">
                     <%= posts.score %>
                   </button>
                 </li>
@@ -83,7 +83,7 @@
                 </li>
 
                 <li>
-                  <%= link_to pluralize(posts.comments.count, "comment"), post_path(posts), class: "btn btn-default btn-sm " %>
+                  <%= link_to pluralize(posts.comments.count, "comment"), post_path(posts), class: "btn btn-default btn-sm pad " %>
                 </li>
               </ul>
 
