@@ -9,8 +9,9 @@
 
             <div class="for-del">
               <div class="pull-right">
-                <i class="fa fa-chevron-down fa-sm del-toggle"></i>
                 <% if logged_in? && @post.user_id == current_user.id %>
+
+                  <i class="fa fa-chevron-down fa-sm del-toggle"></i>
 
                   <div class="btn-group toggle ">
                     <%= link_to(edit_post_path(@post), class: "btn btn-primary btn-xs") do %>
@@ -85,7 +86,7 @@
                     <%= render partial: "posts/downvote", locals: { downvote: @post } %>
 
                   </li>
-                  
+
                   <li>
                     <%= link_to "View Link", @post.link , class: "btn btn-default btn-sm pad" %>
                   </li>
@@ -105,10 +106,6 @@
             <% if logged_in? %>
 
               <%= render partial: "comments/form", locals: { commentable: @post } %>
-
-            <% else %>
-
-              <h3>Please log in to make a comment.</h3>
 
             <% end %>
             <!-- show all post comments -->
